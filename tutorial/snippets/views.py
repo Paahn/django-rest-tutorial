@@ -27,7 +27,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automagically provides `list` and `detail` actions.
     """
-    queryset = User.onjects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class SnippetViewSet(viewsets.ModelViewSet):
@@ -45,6 +45,6 @@ class SnippetViewSet(viewsets.ModelViewSet):
     def highlight(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
-        
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request_user)
